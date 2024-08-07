@@ -1,0 +1,93 @@
+################################################################################
+# LAB 8
+
+rm(list=ls())
+
+
+
+
+# Question 1
+############
+library(MASS) #load MASS package into library
+
+data("iris") #read in data set
+
+#data frame with more convenient variable names
+data1 <- data.frame(sl=iris$Sepal.Length, sw=iris$Sepal.Width,
+  pl=iris$Petal.Length, pw=iris$Petal.Width, spec=iris$Species)
+
+levels(data1$spec) <- c("1","2","3") #rename levels
+
+
+
+#Plots
+######
+colour.spec <- c("blue","orange","red")[data1$spec] #factor levels colours
+
+pairs(formula=sl~pl+pw+sw, data=data1, col=colour.spec)
+
+plot(x=data1$pl, y=data1$sl, xlab="pl", ylab="sl",
+  main="Plot sepal length v. petal length by species",
+  col=colour.spec, lwd=2) #scatter plot
+
+leg <- legend("topleft",lty=c(1,1),  col=c("blue","orange","red"), 
+  legend = c("setosa (1)", "versicolor (2)","virginica (3)")) #plot legend
+
+plot(x=data1$pw, y=data1$sl, xlab="pw", ylab="sl",
+  main="Plot sepal length v. petal width by species",
+  col=colour.spec, lwd=2) #scatter plot
+
+leg <- legend("topleft",lty=c(1,1),  col=c("blue","orange","red"), 
+  legend = c("setosa (1)", "versicolor (2)","virginica (3)")) #plot legend
+
+plot(x=data1$sw, y=data1$sl, xlab="sw", ylab="sl",
+  main="Plot sepal length v. sepal width by species",
+  col=colour.spec, lwd=2) #scatter plot
+
+leg <- legend("topleft",lty=c(1,1),  col=c("blue","orange","red"), 
+  legend = c("setosa (1)", "versicolor (2)","virginica (3)")) #plot legend
+
+ 
+
+# Q1(c)
+#######
+model1 <- lm(formula=sl~pl+spec*sw, data=data1) #linear regression on full data set
+
+summary(model1) #view summary information
+
+confint(model1, level=0.95) #obtain 95% CI on parameters
+
+
+
+# Q1(e)
+
+library("car")
+vif(model1) #obtain VIF stats
+
+
+# Q1(f)
+#######
+anova(model1)
+
+
+
+# Q1(g)
+#######
+
+
+
+# Q1(h)
+#######
+data1.new <- data.frame(pl=c(1.35,3.85), sw=c(3.75,2.65),
+  spec=c("1","2")) #new data
+
+predict(model1, newdata=data1.new, se.fit=F,
+  interval="confidence", level=0.95) #obtain fitted values and mean 95% CI
+
+predict(model1, newdata=data1.new, se.fit=F,
+  interval="prediction", level=0.95) #obtain fitted values and individual 95% CI
+
+
+
+# Q1(i)
+#######

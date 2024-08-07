@@ -1,0 +1,104 @@
+################################################################################
+# LAB 4
+
+rm(list=ls())
+
+getwd() #check working directory
+
+data4 <- read.csv("lab4.csv", header=TRUE,
+  colClasses=c("numeric","factor","factor")) #read CSV data
+
+
+
+# Question 1
+############
+#install.packages("gmodels") #install if necessary
+library("gmodels") #load library
+
+CrossTable(x=data4$sugar, y=data4$chip, expected=F, prop.r=F,
+  prop.c=F, prop.t=F, chisq=F, prop.chisq=F) #cross tab sugar by chip
+
+
+boxplot(formula=score~sugar, data=data4, main="Box plots of score by sugar")
+
+boxplot(formula=score~chip, data=data4, main="Box plots of score by chip")
+
+boxplot(formula=score~sugar*chip, data=data4,
+  main="Box plots of score by sugar and chip")
+
+
+
+
+
+
+
+
+# Q1(a)
+#######
+
+with(data4, interaction.plot(x.factor=sugar, trace.factor=chip,
+                             response=score, main="Iteraction plot sugar by chip"))
+
+with(data4, interaction.plot(x.factor=chip, trace.factor=sugar,
+                             response=score, main="Iteraction plot chip by sugar"))
+
+# Q1(b)
+#######
+fit1 <- aov(formula=score~sugar*chip, data=data4) #save aov object
+
+summary(fit1) #view results
+
+qf(p=0.95, df1=4, df2=90) #0.95 quantile from F(4,90) distribution
+
+
+
+# Q1(c)
+#######
+
+pf(q = 2.579, df1=4, df2=90, lower.tail = FALSE)
+
+# Q1(d)
+#######
+#install.packages("emmeans") #install if necessary
+library("emmeans") #load library
+#install.packages("ggplot2") #install if necessary
+library(ggplot2) #load library
+
+meansObj.sugar <- emmeans(fit1, ~sugar|chip) #save emmeans object
+
+tukey.sugar <- contrast(object=meansObj.sugar, method="pairwise",
+  adjust="tukey") #save contrast object
+
+summary(tukey.sugar, infer=c(T,T), level=0.95,
+  side="two-sided") #view Tukey CIs
+
+plot(tukey.sugar) #view Tukey CI plots
+
+
+
+# Q1(e)
+#######
+meansObj.chip <- emmeans(fit1, ~chip|sugar) #save emmeans object
+
+tukey.chip <- contrast(object=meansObj.chip, method="pairwise",
+                        adjust="tukey") #save contrast object
+
+summary(tukey.chip, infer=c(T,T), level=0.95,
+        side="two-sided") #view Tukey CIs
+
+plot(tukey.chip) #view Tukey CI plots
+
+
+# Q1(f)
+#######
+
+library(ggfortify) #load library
+
+autoplot(fit1, which=1:6, ncol=3, label.size=3) #show diagnostic plots
+
+# Q1(g)
+#######
+
+res <- residuals(fit1) #save residuals
+
+shapiro.test(res) #perform Shapiro-Wilk normality test
