@@ -1,0 +1,67 @@
+[40592:39116:2024-3-13 18:1:8.660] Main Start
+[40592:39116:2024-3-13 18:1:8.660] Command line:"C:\Users\Santiago Montoya\Documents\UTS\Semester2\Data&StatDesing\Week 4\Zoom_cm_fo42anktZ9vvrZo4_mIiPwyocZ-IwEylSKChX+5wPwVI1iEv4izamF@YR+e-HOxO-vIS8FZ_k1000f3df9fd86363_.exe"  Instance:0xD20000 Show State:1
+[40592:39116:2024-3-13 18:1:8.698] C:\
+[40592:39784:2024-3-13 18:1:8.698] [process_requst] start, url:https://us02web.zoom.us/conf/launch
+[40592:39784:2024-3-13 18:1:9.254] [req_state_read_status_code] zHttpQueryInfo complete, status:200
+[40592:39784:2024-3-13 18:1:9.254] [req_state_read_status_code] zHttpQueryInfo complete, status:200 Error: 0
+[40592:39784:2024-3-13 18:1:9.254] [read_response_content] API call zHttpQueryInfo failed, error: 12150
+[40592:39784:2024-3-13 18:1:9.261] [log_response_content] Content length (1048576 as unknown):1048576 , Total read: 1671 , Error No: 0 , Status code: 200
+[40592:39784:2024-3-13 18:1:9.261] [log_response_content] header:
+[40592:39784:2024-3-13 18:1:9.261] HTTP/1.1 200 OK
+Date: Wed, 13 Mar 2024 07:01:09 GMT
+Content-Type: text/plain;charset=utf-8
+Transfer-Encoding: chunked
+Connection: keep-alive
+x-zm-trackingid: v=2.0;clid=us02;rid=WEB_78922bc51c7db57e3114ad1a5191abcd
+x-content-type-options: nosniff
+content-security-policy: upgrade-insecure-requests; default-src https://*.zoom.us https://zoom.us blob: 'self'; img-src https: about: blob: data: 'self'; style-src https: safari-extension: chrome-extension: 'unsafe-inline' data: 'self'; font-src https: safari-extension: chrome-extension: blob: data: 'self'; connect-src * about: blob: data: 'self'; media-src * rtmp: blob: data: 'self'; frame-src https: ms-appx-web: zoommtg: zoomus: wvjbscheme: zoomprc: data: blob: 'self'; object-src 'none'; base-uri 'none';
+x-frame-options: SAMEORIGIN
+set-cookie: zm_aid=; Max-Age=0; Expires=Thu, 01 Jan 1970 00:00:10 GMT; Domain=zoom.us; Path=/; Secure; HttpOnly
+x-zm-zoneid: VA
+strict-transport-security: max-age=31536000; includeSubDomains
+x-xss-protection: 1; mode=block
+referrer-policy: strict-origin-when-cross-origin
+CF-Cache-Status: DYNAMIC
+Set-Cookie: zm_haid=; Max-Age=0; Expires=Thu, 01 Jan 1970 00:00:10 GMT; Domain=zoom.us; Path=/; Secure; HttpOnly
+Set-Cookie: zm_tmaid=; Max-Age=0; Expires=Thu, 01 Jan 1970 00:00:10 GMT; Domain=zoom.us; Path=/; Secure; HttpOnly
+Set-Cookie: zm_htmaid=; Max-Age=0; Expires=Thu, 01 Jan 1970 00:00:10 GMT; Domain=zoom.us; Path=/; Secure; HttpOnly
+Set-Cookie: cred=60FC863CCA91820CBC782C2B3C7C5A81; Path=/; Secure; HttpOnly
+Set-Cookie: _zm_page_auth=us02_c_zuJcakiNRbeZROd4KeA4xw; Domain=zoom.us; Path=/; Secure; HttpOnly
+Set-Cookie: _zm_ssid=us02_c_myygLLBrTxyxa3po40Zi5g; Domain=zoom.us; Path=/; Secure; HttpOnly
+Set-Cookie: _zm_ctaid=xfuEvRNYSEKUmkeE2ghdpw.1710313269188.4211e022f18f844c0da934b3a326a62d; Max-Age=7200; Expires=Wed, 13 Mar 2024 09:01:09 GMT; Domain=zoom.us; Path=/; Secure; HttpOnly
+Set-Cookie: _zm_chtaid=817; Max-Age=7200; Expires=Wed, 13 Mar 2024 09:01:09 GMT; Domain=zoom.us; Path=/; Secure; HttpOnly
+Set-Cookie: _zm_mtk_guid=c7c2741bbe324ab6b1ad19dc48d6a65f; Max-Age=63072000; Expires=Fri, 13 Mar 2026 07:01:09 GMT; Domain=zoom.us; Path=/; Secure
+Set-Cookie: __cf_bm=.GOV4ss2p6t.LyJ56.LKDLo1mL1xv6N1mbfQ9sHP6JU-1710313269-1.0.1.1-fbhOXlUJ5yFZIDxDg7ZA8a.bAISiEuHl8khWSNQYWDVjdIwsgkg1lG4_fuWY6QqYZ4llWTh0YcXSLzSbBzFSRA; path=/; expires=Wed, 13-Mar-24 07:31:09 GMT; domain=.us02web.zoom.us; HttpOnly; Secure; SameSite=None
+Server: cloudflare
+CF-RAY: 863a26abae1ea88f-SYD
+alt-svc: h3=":443"; ma=86400
+
+
+[40592:39784:2024-3-13 18:1:9.261] [process_requst] End for url:https://us02web.zoom.us/conf/launch, return code:200, Error:0, Response content size:1671
+[40592:39116:2024-3-13 18:1:9.262] [client_has_installed_app] found path:
+[40592:39116:2024-3-13 18:1:9.262]  ***NULL-POINTER-PLACEHOLDER***
+[40592:39116:2024-3-13 18:1:9.262] [param_query_local_path] path is: C:\Users\Santiago Montoya\AppData\Roaming\Zoom\ZoomDownload\ dir create response : 1 system error: 1008
+[40592:39116:2024-3-13 18:1:9.262] [downloader_run] State:0
+[40592:14284:2024-3-13 18:1:9.262] [process_requst] start, url:https://us02web.zoom.us/client/latest/Installer.exe?archType=x64
+[40592:39116:2024-3-13 18:1:9.262] [client_has_installed_app] found path:
+[40592:39116:2024-3-13 18:1:9.262]  ***NULL-POINTER-PLACEHOLDER***
+[40592:14284:2024-3-13 18:1:9.667] [req_state_read_status_code] zHttpQueryInfo complete, status:200
+[40592:14284:2024-3-13 18:1:9.667] [req_state_read_status_code] zHttpQueryInfo complete, status:200 Error: 0
+[40592:14284:2024-3-13 18:1:9.837] [read_response_file] Status Code:200, content length: 1020744, total read: 1020744, error code: 0
+[40592:14284:2024-3-13 18:1:9.837] [process_requst] End for url:https://us02web.zoom.us/client/latest/Installer.exe?archType=x64, return code:200, Error:0, Response content size:0
+[40592:39116:2024-3-13 18:1:9.886] [handle_download_job_done] Index: 1 Curr index: 1 StatusCode: 200 Error: 0 Response is Empty. 
+[40592:14284:2024-3-13 18:1:10.14] [process_requst] start, url:https://us02web.zoom.us/client/latest/Zoom.msi?archType=x64
+[40592:14284:2024-3-13 18:1:10.306] [req_state_read_status_code] zHttpQueryInfo complete, status:200
+[40592:14284:2024-3-13 18:1:10.306] [req_state_read_status_code] zHttpQueryInfo complete, status:200 Error: 0
+[40592:14284:2024-3-13 18:1:13.957] [read_response_file] Status Code:200, content length: 39455059, total read: 39455059, error code: 0
+[40592:14284:2024-3-13 18:1:13.966] [process_requst] End for url:https://us02web.zoom.us/client/latest/Zoom.msi?archType=x64, return code:200, Error:0, Response content size:0
+[40592:39116:2024-3-13 18:1:14.14] [handle_download_job_done] Index: 2 Curr index: 2 StatusCode: 200 Error: 0 Response is Empty. 
+[40592:39116:2024-3-13 18:1:14.22] C:\Users\Santiago Montoya\AppData\Roaming\Zoom\ZoomDownload\Installer.exe
+[40592:39116:2024-3-13 18:1:14.22] ZInstaller --conf.mode=silent --ipc_wnd=921532
+[40592:39116:2024-3-13 18:1:14.209] [launch_silent_install] Installer process created, result:42
+[40592:39116:2024-3-13 18:1:23.7] C:\Users\Santiago Montoya\AppData\Roaming\Zoom\bin\Zoom.exe
+[40592:39116:2024-3-13 18:1:23.15] client_launch_app: 
+[40592:39116:2024-3-13 18:1:23.15] C:\Users\Santiago Montoya\AppData\Roaming\Zoom\bin\Zoom.exe
+[40592:39116:2024-3-13 18:1:23.15] "--url=zoommtg://win.launch?h.domain=us02web.zoom.us&h.path=join&confid=dXNzPUxIbmdlNXdsNTV4dmdidVpBNjlPb2ZfR0ZuUDFHLVNLSFppS0c0NzRrUk8tYmpmZklCc2swVl9ONERyOGljQ0ZkVUJoZVl6d2ZCZlhUSHZQdmtreHB0aGk0S0NFc3RzLm16aklaYVlYRGhTWmN1bmMmdGlkPWEzYjk3MjZmNDExNjRmMThhMGQyMDExNjJmZDg0YmJj&mcv=0.92.11227.0929&stype=0&zc=0&browser=chrome&action=join&confno=83811434698&pwd=OFprbjlkYkJ2elh0SEt5ZUxYVjlidz09"
+[40592:39116:2024-3-13 18:1:23.95] [client_launch_app] Zoom app process created, result:42
+[40592:39116:2024-3-13 18:1:23.215] Main End

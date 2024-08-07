@@ -1,0 +1,180 @@
+
+rm(list=ls())
+
+
+
+# Load the npk data
+data(npk)
+# Load the necessary libraries
+library(ggplot2)
+library(ggfortify)
+
+#Q1
+#a
+hist(npk$yield, breaks = "Sturges", probability = TRUE, main = "Histogram of Yield with Normal Curve",
+     xlab = "Yield of peas (lbs/plot)", col = "lightblue")
+
+yield_mean <- mean(npk$yield)
+yield_sd <- sd(npk$yield)
+curve(dnorm(x, mean = yield_mean, sd = yield_sd), add = TRUE, col = "red", lwd = 2)
+
+#b
+shapiro_test <- shapiro.test(npk$yield)
+print(shapiro_test)
+
+
+#c
+yield_mean <- mean(npk$yield)
+yield_sd <- sd(npk$yield)
+n <- length(npk$yield)
+t_value <- qt(0.95, df = n - 1)
+margin_error <- t_value * (yield_sd / sqrt(n))
+ci_lower <- yield_mean + margin_error
+ci_upper <- Inf
+cat("The 95% upper-tail confidence interval for the population mean of yield is:", yield_mean, "to", ci_upper, "\n")
+
+# Check
+t_test_result <- t.test(npk$yield, alternative = "greater", conf.level = 0.95)
+print(t_test_result)
+
+#d
+
+npk_with_nitrogen <- npk$yield[npk$N == 1]
+wilcox_test <- wilcox.test(npk_with_nitrogen, mu = 55, alternative = "greater")
+wilcox_test
+
+#e
+
+yields_with_nitrogen <- npk$yield[npk$N == 1]
+yields_without_nitrogen <- npk$yield[npk$N == 0]
+t_test_results <- t.test(yields_without_nitrogen, yields_with_nitrogen, alternative = "less", var.equal = FALSE)
+t_test_results
+
+boxplot(npk$yield ~ npk$N,
+        xlab = "Nitrogen used",
+        ylab = "Yield (lbs/plot)",
+        main = "Boxplot of Pea Yield with and without Nitrogen",
+        names = c("No Nitrogen", "Nitrogen"),
+        col = c("red", "green"))
+
+
+# Q2
+#a
+boxplot(yield ~ interaction(block, N), data = npk,
+        xlab = "Block and Nitrogen Combination",
+        ylab = "Yield (lbs/plot)",
+        main = "Boxplot of Yield by Block and Nitrogen Combination",
+        col = c("blue", "green"),
+        las = 2)  # Rotate x-axis labels for better readability
+
+#b
+
+#c
+
+anova_results <- aov(yield ~ block + N, data = npk)
+anova_summary <- summary(anova_results)
+
+print(anova_summary)
+
+#d
+
+tukey_results <- TukeyHSD(anova_results, which = "block")
+print(tukey_results)
+
+#e
+
+
+autoplot(anova_results, which=1:6, ncol=3, label.size=3)
+
+#for Q3 and 4
+data(mtcars)
+mtcars$vs <- factor(x=mtcars$vs, levels=c("0","1"))
+
+
+#Q3
+
+#a
+# Fit the linear regression model
+linear_model <- lm(qsec ~ mpg, data = mtcars)
+
+# Extract the model coefficients
+coefficients <- coef(linear_model)
+
+# Write down the regression equation
+cat("Regression equation: qsec = ", coefficients[1], " + ", coefficients[2], " * mpg", "\n")
+
+# Predict the mpg for a qsec value of 17.5 seconds
+predicted_mpg <- (17.5 - coefficients[1]) / coefficients[2]
+
+# Output the predicted mpg
+cat("Predicted vehicle fuel economy (mpg) for an average quarter mile time of 17.5s: ", predicted_mpg, "\n")
+
+#b
+
+summary_linear_model <- summary(linear_model)
+mpg_coefficient_test <- summary_linear_model$coefficients["mpg", ]
+mpg_coefficient_test
+summary_linear_model
+
+#c
+
+# Install and load the necessary package for Durbin-Watson test
+#install.packages("lmtest")
+library(lmtest)
+
+# Perform the Durbin-Watson test on the linear model
+dw_test <- dwtest(linear_model)
+
+# Output the results of the Durbin-Watson test
+print(dw_test)
+
+
+#d
+
+# Assuming you have the summary of the linear model stored in `summary_linear_model`
+residual_standard_error <- summary_linear_model$sigma
+
+# Estimate of σ^2
+sigma_squared <- residual_standard_error^2
+
+# Output the estimate of σ^2
+sigma_squared
+
+
+#q4
+
+#a
+
+# Create the scatter plot
+ggplot(mtcars, aes(x = hp, y = qsec, color = factor(vs))) +
+  geom_point() +
+  scale_color_manual(values = c("1" = "blue", "0" = "red")) +
+  labs(color = "Engine Configuration", x = "Engine Horsepower (hp)", y = "Quarter Mile Time (qsec)") +
+  ggtitle("Scatter Plot of Quarter Mile Time vs. Engine Horsepower")
+
+#b
+
+# Ensure 'vs' is a factor if it's not already
+mtcars$vs <- as.factor(mtcars$vs)
+
+# Fit the model with interaction between 'hp' and 'vs'
+model <- lm(qsec ~ mpg + hp + vs + hp:vs, data = mtcars)
+
+# Output the summary of the model to get the coefficients
+summary_model <- summary(model)
+print(summary_model)
+
+
+
+#d
+
+# Assuming 'model' is your fitted regression model
+
+# New data for prediction
+new_data <- data.frame(mpg = 26.5, hp = 300, vs = factor(0, levels = c(0, 1)))
+
+# Compute the prediction interval
+prediction_interval <- predict(model, newdata = new_data, interval = "predict", level = 0.95)
+
+# Output the prediction interval
+print(prediction_interval)
